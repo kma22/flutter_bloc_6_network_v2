@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_6_network_v2/feature/presentation/bloc/user_bloc.dart';
+import 'package:flutter_bloc_6_network_v2/feature/presentation/bloc/user_event.dart';
 
 class ActionButton extends StatelessWidget {
-  const ActionButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                print('load');
+                userBloc.add(UserLoadEvent());
+              },
               child: Text('Load'),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
@@ -19,7 +25,10 @@ class ActionButton extends StatelessWidget {
             ),
             SizedBox(width: 10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                print('clear');
+                userBloc.add(UserClearEvent());
+              },
               child: Text('Clear'),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
@@ -32,7 +41,9 @@ class ActionButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           child: TextField(
             textAlign: TextAlign.center,
-            onChanged: (text) {},
+            onChanged: (text) {
+              userBloc.add(UserSearchEvent(text: text));
+            },
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               icon: Icon(Icons.search_rounded),

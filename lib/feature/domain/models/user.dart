@@ -1,9 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
-import 'package:flutter/cupertino.dart';
-
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
 
 class User {
@@ -13,9 +7,9 @@ class User {
   final String phone;
 
   User({
-    required this.id,
-    required this.name,
-    required this.emaile,
-    required this.phone,
+    @required this.id,
+    @required this.name,
+    @required this.emaile,
+    @required this.phone,
   });
 }
